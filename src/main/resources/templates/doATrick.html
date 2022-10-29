@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Do a Trick</title>
+    </head>
+    <body>
+        <ul th:object="${rightFox}">
+            <li>
+                <a  th:href="@{/login} ">Switch to another Fox</a>
+            </li>
+            <li>
+                <a  th:href="@{/?name=} + *{name}">Information</a>
+            </li>
+            <li>
+                <a  th:href="@{/nutritionStore/?name=} + *{name}">Nutrition Store</a>
+            </li>
+            <li>
+                <a  th:href="@{/trickCenter/?name=} + *{name}">Trick Center</a>
+            </li>
+            <li>
+                <a  th:href="@{/actionHistory/?name=} + *{name}">Action History</a>
+            </li>
+            <li>
+                <a  th:href="@{/doATrick/?name=} + *{name}">Do a trick</a>
+            </li>
+            <li>
+                <a  th:href="@{/eatAndDrink/?name=} + *{name}">Eat and drink</a>
+            </li>
+        </ul>
+
+        <p th:if = "${noTricks}==0">There are no tricks to do, go and learn some.</p>
+        <p th:if = "${HungryFox}==0">I am not gonna do anything I am hungry and thirsty you monster!</p>
+
+        <form th:unless= "${noTricks}==0 or ${HungryFox}==0" action="#" th:action="@{/doATrick}" method="post">
+            <input type="hidden" th:value="${rightFox.getName()}" name="name"/>
+            <select type="text" name="trick" id="trick" >
+                <option th:each = "trick : *{trickOfFox}" th:value="${trick}" th:text="${trick}"></option>
+            </select>
+            <button type="submit">DO IT!</button>
+        </form>
+    </body>
+</html>

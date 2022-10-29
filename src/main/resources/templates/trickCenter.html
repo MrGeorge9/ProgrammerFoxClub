@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Trick Center</title>
+    </head>
+
+    <body>
+
+        <ul th:object="${rightFox}">
+            <li>
+                <a  th:href="@{/login} ">Switch to another Fox</a>
+            </li>
+            <li>
+                <a  th:href="@{/?name=} + *{name}">Information</a>
+            </li>
+            <li>
+                <a  th:href="@{/nutritionStore/?name=} + *{name}">Nutrition Store</a>
+            </li>
+            <li>
+                <a  th:href="@{/trickCenter/?name=} + *{name}">Trick Center</a>
+            </li>
+            <li>
+                <a  th:href="@{/actionHistory/?name=} + *{name}">Action History</a>
+            </li>
+            <li>
+                <a  th:href="@{/doATrick/?name=} + *{name}">Do a trick</a>
+            </li>
+            <li>
+                <a  th:href="@{/eatAndDrink/?name=} + *{name}">Eat and drink</a>
+            </li>
+        </ul>
+
+        <form th:if="${tricks.size()}>0" action="#" th:action="@{/trickCenter}" method="post">
+
+            <input type="hidden" th:value="${rightFox.getName()}" name="name"/>
+
+            <label for="trick" >Tricks</label>
+            <select type="text" name="trick" id="trick" >
+                <option th:each = "trick : *{tricks}" th:value="${trick}" th:text="${trick}"></option>
+            </select>
+
+            <button type="submit">Learn</button>
+        </form>
+
+        <p th:if="${tricks.size()}==0">There are no more tricks to learn.</p>
+    </body>
+</html>

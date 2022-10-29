@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Register</title>
+    </head>
+    <body>
+    <form action="#" th:action="@{/register}" method="post">
+        <label for="name" >Name</label>
+        <input type="text" name="name" id="name" placeholder="Name of the user" required/>
+        <label for="password" >Password</label>
+        <input type="text" name="password" id="password" placeholder="Password" required/>
+        <label for="passwordAgain" >Password Again</label>
+        <input type="text" name="passwordAgain" id="passwordAgain" placeholder="PasswordAgain" required/>
+        <button type="submit">Register</button>
+    </form>
+
+    <p th:if="${error}==0" th:style="'color: red;'">Passwords don´t match</p>
+
+    </body>
+</html>
